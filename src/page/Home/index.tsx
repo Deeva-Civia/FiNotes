@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Header from '../../components/molecules/Header';
-import {Gap, Quotes} from '../../components/atoms';
+import {Gap, Quotes, Search} from '../../components/atoms';
 
 const Home = () => {
   return (
@@ -14,7 +14,11 @@ const Home = () => {
         align="left"
       />
       <Gap height={27} />
-      <Quotes />
+      <View style={styles.contentContainer}>
+        <Quotes />
+        <Gap height={19} />
+        <Search />
+      </View>
     </View>
   );
 };
@@ -25,5 +29,8 @@ const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
     backgroundColor: '#EDF3FF',
+  },
+  contentContainer: {
+    paddingHorizontal: 22,
   },
 });

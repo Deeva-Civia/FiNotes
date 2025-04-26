@@ -4,7 +4,7 @@ import {BgQuote, Lamp} from '../../../assets';
 
 const Quotes = () => {
   return (
-    <View style={styles.container}>
+    <View>
       <ImageBackground source={BgQuote} style={styles.imageBg}>
         <View style={styles.overlay} />
 
@@ -25,9 +25,6 @@ const Quotes = () => {
 export default Quotes;
 
 const styles = StyleSheet.create({
-  container: {
-    marginHorizontal: 22,
-  },
   imageBg: {
     width: '100%',
     height: 149,
