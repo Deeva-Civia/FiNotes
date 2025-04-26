@@ -1,6 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import Header from '../../components/molecules/Header';
+import {Gap, Quotes} from '../../components/atoms';
 
 const Home = () => {
   return (
@@ -12,6 +13,8 @@ const Home = () => {
         rightImage
         align="left"
       />
+      <Gap height={27} />
+      <Quotes />
     </View>
   );
 };
