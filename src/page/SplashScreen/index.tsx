@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
+    fontFamily: 'Angkor-Regular',
     color: '#10266F',
     fontSize: 50,
   },

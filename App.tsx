@@ -3,7 +3,7 @@ import SplashScreen from './src/page/SplashScreen';
 import SignIn from './src/page/SignIn';
 
 const App = () => {
-  return <SignIn />;
+  return <SplashScreen />;
 };
 
 export default App;
