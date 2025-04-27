@@ -3,5 +3,19 @@ import UserImage from './user.jpg';
 import BgQuote from './bg_quote.jpg';
 import Lamp from './Lamp.svg';
 import SearchIcon from './search.svg';
+import StarFilled from './star_filled.svg';
+import Star from './star.svg';
+import StarFilledWhite from './star_filled_white.svg';
+import Add from './plus.svg';
 
-export {BackLogo, UserImage, BgQuote, Lamp, SearchIcon};
+export {
+  BackLogo,
+  UserImage,
+  BgQuote,
+  Lamp,
+  SearchIcon,
+  StarFilled,
+  Star,
+  StarFilledWhite,
+  Add,
+};

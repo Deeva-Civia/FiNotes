@@ -25,7 +25,7 @@ const Header = ({
         <>
           {/* Kiri: Back */}
           {displayBackButton && (
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.backButton}>
               <BackLogo />
             </TouchableOpacity>
           )}
