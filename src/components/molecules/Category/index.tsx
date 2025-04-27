@@ -1,6 +1,6 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
 import React, {useState} from 'react';
-import ButtonCategory from '../../atoms/ButtonCategory';
+import {ButtonCategory} from '../../atoms';
 
 const Category = () => {
   const [activeCategory, setActiveCategory] = useState('All');
