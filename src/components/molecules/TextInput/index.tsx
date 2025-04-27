@@ -19,22 +19,22 @@ export default TextInput;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 24,
+    marginBottom: 15,
   },
   label: {
-    fontFamily: 'Poppins-Medium',
     fontSize: 14,
-    color: '#020202',
+    color: '#10266F',
     marginBottom: 6,
   },
   input: {
     borderWidth: 1,
-    borderColor: '#C4C4C4',
+    borderColor: '#C1C7CD',
     borderRadius: 8,
     paddingHorizontal: 16,
     paddingVertical: 12,
     fontFamily: 'Poppins-Regular',
     fontSize: 14,
     color: '#020202',
+    backgroundColor: '#FFFFFF',
   },
 });

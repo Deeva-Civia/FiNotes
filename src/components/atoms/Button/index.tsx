@@ -1,10 +1,22 @@
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import React from 'react';
 
-const Button = ({label, color = '#02CF8E', textColor = '#020202'}) => {
+const Button = ({label, type = 'primary', onPress}) => {
   return (
-    <TouchableOpacity style={styles.button(color)} activeOpacity={0.5}>
-      <Text style={styles.buttontext(textColor)}>{label}</Text>
+    <TouchableOpacity
+      style={[
+        styles.button,
+        type === 'secondary' ? styles.secondary : styles.primary,
+      ]}
+      activeOpacity={0.7}
+      onPress={onPress}>
+      <Text
+        style={[
+          styles.text,
+          type === 'secondary' ? styles.secondaryText : styles.primaryText,
+        ]}>
+        {label}
+      </Text>
     </TouchableOpacity>
   );
 };
@@ -12,15 +24,31 @@ const Button = ({label, color = '#02CF8E', textColor = '#020202'}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  button: color => ({
-    backgroundColor: color,
-    borderRadius: 8,
+  button: {
+    borderRadius: 100,
     paddingVertical: 12,
-  }),
-  buttontext: textColor => ({
-    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    elevation: 10,
+  },
+  primary: {
+    backgroundColor: '#0B1A51', // Navy
+  },
+  secondary: {
+    backgroundColor: '#FFFFFF', // Putih
+    borderWidth: 1,
+    borderColor: '#0B1A51', // Border Navy
+  },
+  text: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 14,
-    color: textColor,
-  }),
+    fontSize: 20,
+    fontWeight: 'semibold',
+  },
+  primaryText: {
+    color: '#FFFFFF', // Putih
+  },
+  secondaryText: {
+    color: '#0B1A51', // Navy
+  },
 });
