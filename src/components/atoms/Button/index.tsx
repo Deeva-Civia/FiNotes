@@ -26,10 +26,10 @@ export default Button;
 const styles = StyleSheet.create({
   button: {
     borderRadius: 100,
-    paddingVertical: 12,
+    paddingVertical: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 16,
+    marginBottom: 23,
     elevation: 10,
   },
   primary: {
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Poppins-Medium',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'semibold',
   },
   primaryText: {

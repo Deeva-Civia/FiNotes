@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   label: {
+    fontFamily: 'Poppins-Medium',
     fontSize: 14,
     color: '#10266F',
     marginBottom: 6,
