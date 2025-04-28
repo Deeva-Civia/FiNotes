@@ -6,6 +6,7 @@ import SearchIcon from './search.svg';
 import StarFilled from './star_filled.svg';
 import Star from './star.svg';
 import StarFilledWhite from './star_filled_white.svg';
+import StarFilledBlue from './star_filled_blue.svg';
 import Add from './plus.svg';
 
 export {
@@ -17,5 +18,6 @@ export {
   StarFilled,
   Star,
   StarFilledWhite,
+  StarFilledBlue,
   Add,
 };
