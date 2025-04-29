@@ -1,6 +1,6 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
-import {Gap, Quotes, Search, AddButton} from '../../components/atoms';
+import {Gap, Quotes, SearchButton, AddButton} from '../../components/atoms';
 import {Header, Category, NotesList} from '../../components/molecules';
 
 const Home = ({
@@ -19,11 +19,19 @@ const Home = ({
       <View style={styles.contentContainer}>
         <Quotes />
         <Gap height={22} />
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchButton
+          width={'100%'}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <Gap height={22} />
         <Category />
         <Gap height={22} />
-        <NotesList notes={allNotes} onFavorite={onFavorite} />
+        <NotesList
+          notes={allNotes}
+          onFavorite={onFavorite}
+          text={'Belum ada catatan'}
+        />
         <AddButton onPress={handleAddNote} />
       </View>
     </View>

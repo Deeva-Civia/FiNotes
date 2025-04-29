@@ -1,7 +1,7 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Header, NotesList, Category} from '../../components/molecules';
-import {Gap, Quotes, Search, AddButton} from '../../components/atoms';
+import {Gap, Quotes, SearchButton, AddButton} from '../../components/atoms';
 
 const Favorite = ({
   notes,
@@ -21,11 +21,19 @@ const Favorite = ({
       <View style={styles.contentContainer}>
         <Quotes />
         <Gap height={22} />
-        <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <SearchButton
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          width={'100%'}
+        />
         <Gap height={22} />
         <Category />
         <Gap height={22} />
-        <NotesList notes={favoriteNotes} onFavorite={onFavorite} />
+        <NotesList
+          notes={favoriteNotes}
+          onFavorite={onFavorite}
+          text={'Belum ada catatan.'}
+        />
         <AddButton onPress={handleAddNote} />
       </View>
     </View>

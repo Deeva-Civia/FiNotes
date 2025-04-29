@@ -1,7 +1,7 @@
 import ImageUser from './ImageUser';
 import Gap from './Gap';
 import Quotes from './Quotes';
-import Search from './Search';
+import SearchButton from './SearchButton';
 import ButtonCategory from './ButtonCategory';
 import NoteItem from './NotesItem';
 import AddButton from './AddButton';
@@ -11,7 +11,7 @@ export {
   ImageUser,
   Gap,
   Quotes,
-  Search,
+  SearchButton,
   ButtonCategory,
   NoteItem,
   AddButton,

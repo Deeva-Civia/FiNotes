@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Home from './src/page/Home';
 import Favorite from './src/page/Favorite';
+import Search from './src/page/Search';
 
 const App = () => {
   const [notes, setNotes] = useState([
@@ -48,12 +49,25 @@ const App = () => {
     setNotes(updatedNotes);
   };
   return (
-    <Favorite
-      notes={notes}
-      onFavorite={handleFavorite}
+    // <Home
+    //   notes={notes}
+    //   onFavorite={handleFavorite}
+    //   searchQuery={searchQuery}
+    //   setSearchQuery={setSearchQuery}
+    //   handleAddNote={handleAddNote}
+    // />
+    // <Favorite
+    //   notes={notes}
+    //   onFavorite={handleFavorite}
+    //   searchQuery={searchQuery}
+    //   setSearchQuery={setSearchQuery}
+    //   handleAddNote={handleAddNote}
+    // />
+    <Search
       searchQuery={searchQuery}
       setSearchQuery={setSearchQuery}
-      handleAddNote={handleAddNote}
+      notes={notes}
+      onFavorite={handleFavorite}
     />
   );
 };

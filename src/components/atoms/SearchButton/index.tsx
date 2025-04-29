@@ -2,9 +2,14 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import React from 'react';
 import {SearchIcon} from '../../../assets';
 
-const Search = ({borderColor = '#AEAEAE', searchQuery, setSearchQuery}) => {
+const SearchButton = ({
+  borderColor = '#AEAEAE',
+  searchQuery,
+  setSearchQuery,
+  width,
+}) => {
   return (
-    <View style={styles.container(borderColor)}>
+    <View style={styles.container(borderColor, width)}>
       <SearchIcon style={styles.icon} />
       <TextInput
         value={searchQuery}
@@ -17,15 +22,15 @@ const Search = ({borderColor = '#AEAEAE', searchQuery, setSearchQuery}) => {
   );
 };
 
-export default Search;
+export default SearchButton;
 
 const styles = StyleSheet.create({
-  container: borderColor => ({
+  container: (borderColor, width) => ({
     backgroundColor: '#F6F6F6',
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%',
-    height: 50, // dibuat lebih tinggi sedikit
+    width: width,
+    height: 40,
     gap: 10,
     paddingHorizontal: 10,
     borderRadius: 20,

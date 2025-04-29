@@ -3,9 +3,9 @@ import React from 'react';
 import NotesItem from '../../atoms/NotesItem';
 import {EmptyState} from '../../atoms';
 
-const NotesList = ({notes, onFavorite}) => {
+const NotesList = ({notes, onFavorite, text}) => {
   if (!notes || notes.length === 0) {
-    return <EmptyState />;
+    return <EmptyState text={text} />;
   }
 
   return (

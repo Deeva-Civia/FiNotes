@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const EmptyState = () => {
+const EmptyState = ({text}) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Belum ada catatan</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
