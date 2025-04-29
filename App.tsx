@@ -4,7 +4,7 @@ import SignIn from './src/page/SignIn';
 import SignUp from './src/page/SignUp';
 
 const App = () => {
-  return <SignUp />;
+  return <SignIn />;
 };
 
 export default App;
