@@ -8,19 +8,34 @@ import {
   Image,
   ScrollView,
   Modal,
+  Alert,
 } from 'react-native';
 
 const categories = ['Back-End', 'Front-End', 'DevOps', 'Mobile', 'UI/UX'];
 
-const AddNote = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Select Category');
+const RekonfigurasiURL = () => {
+  const [selectedCategory, setSelectedCategory] = useState('Back-End');
   const [modalVisible, setModalVisible] = useState(false);
-  const [title, setTitle] = useState('');
-  const [note, setNote] = useState('');
+  const [title, setTitle] = useState('Rekonfigurasi URL');
+  const [description, setDescription] = useState(
+    'Menggunakan file htaccess : sudah tidak pakai index.html\n' +
+    'atau index.php tapi sudah gunakan class, method dan\n' +
+    'parameter di url'
+  );
 
   const handleSelect = (category) => {
     setSelectedCategory(category);
     setModalVisible(false);
+  };
+
+  const handleSave = () => {
+    Alert.alert('Saved', `Judul: ${title}\nKategori: ${selectedCategory}\nIsi:\n${description}`);
+  };
+
+  const handleDelete = () => {
+    Alert.alert('Deleted', 'Catatan berhasil dihapus.');
+    setTitle('');
+    setDescription('');
   };
 
   return (
@@ -28,9 +43,7 @@ const AddNote = () => {
       <View style={styles.container}>
         <ScrollView style={{ flex: 1 }}>
           <TextInput
-            style={styles.titleInput}
-            placeholder="Title"
-            placeholderTextColor="#A0A0A0"
+            style={styles.title}
             value={title}
             onChangeText={setTitle}
           />
@@ -40,32 +53,33 @@ const AddNote = () => {
             style={styles.dropdown}
             onPress={() => setModalVisible(true)}
           >
-            <Text style={styles.dropdownText}>
-              {selectedCategory}⬇️
-            </Text>
+            <Text style={styles.dropdownText}>{selectedCategory} ⬇️</Text>
           </TouchableOpacity>
 
           <TextInput
-            style={styles.noteInput}
-            placeholder="Start typing"
-            placeholderTextColor="#A0A0A0"
+            style={styles.description}
             multiline
-            value={note}
-            onChangeText={setNote}
+            value={description}
+            onChangeText={setDescription}
           />
         </ScrollView>
 
-        {/* Bottom Section */}
+        {/* BOTTOM SECTION */}
         <View style={styles.bottomSection}>
-          <TouchableOpacity style={styles.saveButton}>
-            <Text style={styles.saveButtonText}>Save</Text>
-          </TouchableOpacity>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
+              <Text style={styles.saveButtonText}>Save</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.deleteButton} onPress={handleDelete}>
+              <Text style={styles.deleteButtonText}>Delete</Text>
+            </TouchableOpacity>
+          </View>
 
           <TouchableOpacity style={styles.imageUpload}>
             <View style={styles.uploadIconContainer}>
               <Text style={styles.plusIcon}>+</Text>
-              <Image
-                source={require('../../assets/icon.png')}
+              <Image 
+                source={require('../../assets/icon.png')} 
                 style={styles.uploadIcon}
               />
             </View>
@@ -111,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'space-between',
   },
-  titleInput: {
+  title: {
     fontSize: 22,
     fontWeight: 'bold',
     color: '#000',
@@ -130,16 +144,17 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     alignSelf: 'flex-start',
     marginBottom: 15,
-    width: 150,
+    width: 120,
   },
   dropdownText: {
     fontSize: 14,
     color: '#000',
   },
-  noteInput: {
-    fontSize: 14,
+  description: {
+    fontSize: 13,
     color: '#000',
-    minHeight: 150,
+    lineHeight: 20,
+    minHeight: 120,
     textAlignVertical: 'top',
   },
   bottomSection: {
@@ -175,13 +190,27 @@ const styles = StyleSheet.create({
     height: 25,
     tintColor: 'white',
   },
+  buttonContainer: {
+    flexDirection: 'row',
+  },
   saveButton: {
     backgroundColor: '#0B1A51',
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 30,
+    marginRight: 10,
   },
   saveButtonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  deleteButton: {
+    backgroundColor: '#FF0000',
+    borderRadius: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 30,
+  },
+  deleteButtonText: {
     color: 'white',
     fontWeight: 'bold',
   },
@@ -206,4 +235,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddNote;
+export default RekonfigurasiURL;

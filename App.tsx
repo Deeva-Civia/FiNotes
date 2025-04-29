@@ -1,8 +1,9 @@
 import React from 'react';
-import Start from './src/page/AddNote';
+import AddNote from './src/page/AddNote';
+import EditNote from './src/page/EditNote';
 
 const App = () => {
-  return <Start />;
+  return <EditNote />; 
 };
 
 export default App;
