@@ -1,23 +1,18 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import {Button} from '../../components/atoms';
-import {StartPage} from '../../assets'; // ilustrasi SVG atau image
+import {Button, Gap} from '../../components/atoms/';
 
 const Start = () => {
   return (
-    <View style={styles.container}>
-      <StartPage width={270} height={200} style={styles.image} />
-
-      <Text style={styles.title}>FiNotes - Filkom Notes</Text>
-
-      <Text style={styles.subtitle}>
-        Tempat semua ide dan materi kuliahmu tersimpan dengan rapi. Efisien.
-        Terstruktur. {'\n'}
-        Khusus mahasiswa Fakultas Ilmu Komputer
-      </Text>
-      <View style={styles.buttonWrapper}>
-        <Button label="Sign In" type="primary" />
-        <Button label="Create new account" type="secondary" />
+    <View style={styles.pageContainer}>
+      <View style={styles.contentContainer}>
+        <Gap height={26} />
+        <Text style={styles.title}>Sign In To Your Account</Text>
+        <Gap height={50} />
+        <View style={styles.buttonWrapper}>
+          <Button label="Sign In" type="primary" />
+          <Button label="Sign Up" type="secondary" />
+        </View>
       </View>
     </View>
   );
@@ -26,28 +21,24 @@ const Start = () => {
 export default Start;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#FFFFFF',
+  pageContainer: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 24,
-    paddingTop: 60,
+    backgroundColor: '#EDF3FF', // background light blue kayak di gambar
   },
-  image: {
-    marginBottom: 32,
+  contentContainer: {
+    backgroundColor: '#EDF3FF',
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 32,
   },
   title: {
-    fontSize: 22,
+    fontSize: 35,
     fontWeight: 'bold',
-    color: '#10266F',
+    color: '#0B1A51', // warna teks navy gelap
     textAlign: 'center',
-    marginBottom: 12,
+    marginBottom: 32,
   },
-  subtitle: {
-    fontSize: 14,
-    color: '#555',
-    textAlign: 'center',
-    lineHeight: 20,
+  buttonWrapper: {
+    marginTop: 5,
   },
 });
