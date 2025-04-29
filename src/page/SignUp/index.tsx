@@ -1,7 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, ScrollView} from 'react-native';
 import React from 'react';
 import {Header, TextInput} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms/';
+import {Profile} from '../../assets';
 
 const SignIn = () => {
   return (
@@ -13,18 +14,25 @@ const SignIn = () => {
         displayBackButton
         align="right"
       />
-      <View style={styles.contentContainer}>
-        <Gap height={26} />
-        <Text style={styles.title}>Create New Accounts</Text>
-        <Gap height={50} />
-        <TextInput label="Name" placeholder="Name" />
-        <TextInput label="Username" placeholder="Username" />
-        <TextInput label="Email" placeholder="address" />
-        <TextInput label="Password" placeholder="Password" secureTextEntry />
-        <View style={styles.buttonWrapper}>
-          <Button label="Sign Up" type="primary" />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.contentContainer}>
+          <Gap height={26} />
+          <Text style={styles.title}>Create New Account</Text>
+          <View style={styles.imageWrapper}>
+            <View style={styles.profileCircle}>
+              <Profile width={80} height={80} />
+            </View>
+          </View>
+          <TextInput label="Name" placeholder="Name" />
+          <TextInput label="Username" placeholder="Username" />
+          <TextInput label="Email" placeholder="Email address" />
+          <TextInput label="Password" placeholder="Password" secureTextEntry />
+          <View style={styles.buttonWrapper}>
+            <Button label="Sign Up" type="primary" />
+          </View>
+          <Gap height={30} />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };
@@ -34,22 +42,37 @@ export default SignIn;
 const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
-    backgroundColor: '#EDF3FF', // background light blue kayak di gambar
+    backgroundColor: '#EDF3FF',
+  },
+  scrollContent: {
+    flexGrow: 1,
   },
   contentContainer: {
     backgroundColor: '#EDF3FF',
-    flex: 1,
     paddingHorizontal: 24,
-    paddingTop: 32,
+    paddingTop: 55,
   },
   title: {
-    fontSize: 35,
+    fontSize: 34,
     fontWeight: 'bold',
-    color: '#0B1A51', // warna teks navy gelap
+    color: '#0B1A51',
     textAlign: 'center',
-    marginBottom: 32,
+    marginBottom: 44,
   },
   buttonWrapper: {
-    marginTop: 5,
+    marginTop: 8,
+  },
+  imageWrapper: {
+    alignItems: 'center',
+    marginBottom: 28,
+  },
+  profileCircle: {
+    width: 125,
+    height: 125,
+    borderRadius: 60,
+    borderWidth: 1,
+    borderColor: '#0B1A51',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

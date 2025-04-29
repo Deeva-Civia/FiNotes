@@ -1,5 +1,5 @@
 import FiNotes from './Finotes.png';
 import BackLogo from './Arrow.svg';
-import AddProfil from './AddProfile.svg';
+import Profile from './Profile.svg';
 
-export {BackLogo, FiNotes, AddProfil};
+export {BackLogo, FiNotes, Profile};

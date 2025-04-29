@@ -19,23 +19,24 @@ export default TextInput;
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 15,
+    marginBottom: 16,
   },
   label: {
     fontFamily: 'Poppins-Medium',
     fontSize: 14,
-    color: '#10266F',
+    color: '#0B1A51', // lebih gelap navy
     marginBottom: 6,
   },
   input: {
-    borderWidth: 1,
-    borderColor: '#C1C7CD',
-    borderRadius: 8,
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
-    color: '#020202',
+    height: 48, // fix height supaya konsisten
     backgroundColor: '#FFFFFF',
+    borderWidth: 1,
+    borderColor: '#E0E0E0', // soft border color
+    borderRadius: 12, // lebih bulat
+    paddingHorizontal: 16,
+    fontFamily: 'Poppins-Regular',
+    fontSize: 13, // sedikit lebih kecil
+    color: '#020202',
+    elevation: 1,
   },
 });
