@@ -25,7 +25,7 @@ const Header = ({
         <>
           {/* Kiri: Back */}
           {displayBackButton && (
-            <TouchableOpacity style={styles.backButton}>
+            <TouchableOpacity activeOpacity={0.5} style={styles.backButton}>
               <BackLogo />
             </TouchableOpacity>
           )}
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     backgroundColor: backgroundColor,
     paddingHorizontal: 24,
     paddingVertical: 22,
-    elevation: 10,
+    elevation: 5,
   }),
   title: titleSize => ({
     fontFamily: 'Roboto-Bold',

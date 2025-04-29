@@ -1,16 +1,18 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import React from 'react';
+import {Header, NotesList, Category} from '../../components/molecules';
 import {Gap, Quotes, SearchButton, AddButton} from '../../components/atoms';
-import {Header, Category, NotesList} from '../../components/molecules';
 
-const Home = ({
+const Favorite = ({
   notes,
   onFavorite,
   handleAddNote,
   searchQuery,
   setSearchQuery,
 }) => {
-  const allNotes = [...notes].sort((a, b) => b.createdAt - a.createdAt);
+  const favoriteNotes = notes
+    .filter(note => note.favorited)
+    .sort((a, b) => b.createdAt - a.createdAt);
 
   return (
     <View style={styles.pageContainer}>
@@ -20,17 +22,17 @@ const Home = ({
         <Quotes />
         <Gap height={22} />
         <SearchButton
-          width={'100%'}
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
+          width={'100%'}
         />
         <Gap height={22} />
         <Category />
         <Gap height={22} />
         <NotesList
-          notes={allNotes}
+          notes={favoriteNotes}
           onFavorite={onFavorite}
-          text={'Belum ada catatan'}
+          text={'Belum ada catatan.'}
         />
         <AddButton onPress={handleAddNote} />
       </View>
@@ -38,7 +40,7 @@ const Home = ({
   );
 };
 
-export default Home;
+export default Favorite;
 
 const styles = StyleSheet.create({
   pageContainer: {
