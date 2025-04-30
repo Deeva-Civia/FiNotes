@@ -1,7 +1,5 @@
-import FiNotes from './Finotes.png';
 import BackLogo from './Arrow.svg';
 import Profile from './Profile.svg';
-import First from './Notes.svg';
 import UserImage from './user.jpg';
 import BgQuote from './bg_quote.jpg';
 import Lamp from './Lamp.svg';
@@ -23,4 +21,5 @@ export {
   StarFilledWhite,
   StarFilledBlue,
   Add,
+  Profile,
 };

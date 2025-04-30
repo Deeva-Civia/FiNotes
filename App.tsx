@@ -1,9 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import SplashScreen from './src/page/SplashScreen';
 import SignIn from './src/page/SignIn';
 import SignUp from './src/page/SignUp';
 import Start from './src/page/Start';
-import React, {useState} from 'react';
 import Home from './src/page/Home';
 import Search from './src/page/Search';
 import {NavigationContainer} from '@react-navigation/native';
@@ -66,6 +65,16 @@ const App = () => {
         screenOptions={{
           animation: 'fade',
         }}>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Start"
+          component={Start}
+          options={{headerShown: false}}
+        />
         <Stack.Screen name="Home" options={{headerShown: false}}>
           {props => (
             <Home

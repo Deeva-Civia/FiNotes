@@ -1,10 +1,6 @@
 import ImageUser from './ImageUser';
 import Gap from './Gap';
-<<<<<<< HEAD
 import Button from './Button';
-
-export {ImageUser, Gap, Button};
-=======
 import Quotes from './Quotes';
 import SearchButton from './SearchButton';
 import ButtonCategory from './ButtonCategory';
@@ -21,5 +17,5 @@ export {
   NoteItem,
   AddButton,
   EmptyState,
+  Button,
 };
->>>>>>> e800ea8d6f5ef244cf3eb1e767cc50070548888e

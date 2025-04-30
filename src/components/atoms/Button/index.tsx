@@ -29,16 +29,17 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 23,
-    elevation: 10,
+    elevation: 4,
+    width: 361,
+    height: 45,
   },
   primary: {
-    backgroundColor: '#0B1A51', // Navy
+    backgroundColor: '#10266F',
   },
   secondary: {
-    backgroundColor: '#FFFFFF', // Putih
+    backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#0B1A51', // Border Navy
+    borderColor: '#10266F',
   },
   text: {
     fontFamily: 'Poppins-Medium',
@@ -46,9 +47,9 @@ const styles = StyleSheet.create({
     fontWeight: 'semibold',
   },
   primaryText: {
-    color: '#FFFFFF', // Putih
+    color: '#FFFFFF',
   },
   secondaryText: {
-    color: '#0B1A51', // Navy
+    color: '#10266F',
   },
 });
