@@ -2,15 +2,15 @@ import {StyleSheet, View, ScrollView} from 'react-native';
 import React from 'react';
 import {ButtonCategory} from '../../atoms';
 
-const Category = ({activeCategory, setActiveCategory}) => {
-  const categories = [
-    'All',
-    'Favorite',
-    'Back-end',
-    'Front-end',
-    'Software Engineering',
-  ];
+export const categories = [
+  'All',
+  'Favorite',
+  'Back-end',
+  'Front-end',
+  'Software Engineering',
+];
 
+const Category = ({activeCategory, setActiveCategory}) => {
   const handlePress = label => {
     setActiveCategory(label);
   };

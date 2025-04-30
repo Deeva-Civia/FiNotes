@@ -43,8 +43,9 @@ const Home = ({notes, onFavorite, handleAddNote, navigation}) => {
           text={
             '\t\t\t\t\tNo notes available\nStart by creating your first one!'
           }
+          onPressItem={note => navigation.navigate('EditNote', {note})}
         />
-        <AddButton onPress={handleAddNote} />
+        <AddButton onPress={() => navigation.navigate('AddNote')} />
       </View>
     </View>
   );

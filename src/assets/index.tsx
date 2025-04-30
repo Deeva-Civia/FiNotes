@@ -9,6 +9,8 @@ import Star from './star.svg';
 import StarFilledWhite from './star_filled_white.svg';
 import StarFilledBlue from './star_filled_blue.svg';
 import Add from './plus.svg';
+import AddPhoto from './Add_photo.svg';
+import ButtonDrop from './Button_Drop.svg';
 
 export {
   BackLogo,
@@ -22,4 +24,6 @@ export {
   StarFilledBlue,
   Add,
   Profile,
+  AddPhoto,
+  ButtonDrop,
 };

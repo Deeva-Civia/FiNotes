@@ -33,7 +33,9 @@ const SignIn = ({navigation}) => {
           <View style={styles.buttonWrapper}>
             <Button
               label="Sign Up"
-              type="primary"
+              bgColor="#10266F"
+              color="#FFFFFF"
+              borderColor="#10266F"
               onPress={() => navigation.navigate('SignIn')}
             />
           </View>

@@ -1,120 +1,71 @@
 import React, {useState} from 'react';
+import {useRoute} from '@react-navigation/native';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Modal,
-  Alert,
-} from 'react-native';
+  BottomSection,
+  CategoryDropdown,
+  Header,
+  CategoryModal,
+} from '../../components/molecules';
+import {
+  NoteBodyInput,
+  NoteDateText,
+  NoteTitleInput,
+} from '../../components/atoms';
 
-const categories = ['Back-End', 'Front-End', 'DevOps', 'Mobile', 'UI/UX'];
+const EditNote = ({navigation}) => {
+  const route = useRoute();
+  const {note} = route.params;
 
-const EditNote = () => {
-  const [selectedCategory, setSelectedCategory] = useState('Back-End');
+  const [selectedCategory, setSelectedCategory] = useState(note.category);
   const [modalVisible, setModalVisible] = useState(false);
-  const [title, setTitle] = useState('Rekonfigurasi URL');
-  const [description, setDescription] = useState(
-    'Menggunakan file htaccess : sudah tidak pakai index.html\n' +
-      'atau index.php tapi sudah gunakan class, method dan\n' +
-      'parameter di url',
-  );
+  const [title, setTitle] = useState(note.title);
+  const [description, setDescription] = useState(note.body);
 
   const handleSelect = category => {
     setSelectedCategory(category);
     setModalVisible(false);
   };
 
-  const handleSave = () => {
-    Alert.alert(
-      'Saved',
-      `Judul: ${title}\nKategori: ${selectedCategory}\nIsi:\n${description}`,
-    );
-  };
-
-  const handleDelete = () => {
-    Alert.alert('Deleted', 'Catatan berhasil dihapus.');
-    setTitle('');
-    setDescription('');
-  };
-
   return (
     <View style={styles.page}>
+      <Header
+        title="Edit Note"
+        titleSize={26}
+        displayBackButton
+        align="right"
+        onPress={() => navigation.goBack()}
+      />
+
       <View style={styles.container}>
         <ScrollView style={{flex: 1}}>
-          <TextInput
-            style={styles.title}
-            value={title}
-            onChangeText={setTitle}
+          <NoteTitleInput value={title} onChangeText={setTitle} />
+          <NoteDateText date="18 April 2025 18:16" />
+          <CategoryDropdown
+            selectedCategory={selectedCategory}
+            handleSelect={handleSelect}
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
           />
-          <Text style={styles.date}>18 April 2025 18:16</Text>
-
-          <TouchableOpacity
-            style={styles.dropdown}
-            onPress={() => setModalVisible(true)}>
-            <Text style={styles.dropdownText}>{selectedCategory} ⬇️</Text>
-          </TouchableOpacity>
-
-          <TextInput
-            style={styles.description}
-            multiline
-            value={description}
-            onChangeText={setDescription}
-          />
+          <NoteBodyInput value={description} onChangeText={setDescription} />
         </ScrollView>
 
-        {/* BOTTOM SECTION */}
-        <View style={styles.bottomSection}>
-          <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.saveButton} onPress={handleSave}>
-              <Text style={styles.saveButtonText}>Save</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.deleteButton}
-              onPress={handleDelete}>
-              <Text style={styles.deleteButtonText}>Delete</Text>
-            </TouchableOpacity>
-          </View>
-
-          <TouchableOpacity style={styles.imageUpload}>
-            <View style={styles.uploadIconContainer}>
-              <Text style={styles.plusIcon}>+</Text>
-              <Image
-                source={require('../../assets/icon.png')}
-                style={styles.uploadIcon}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+        <BottomSection
+          onSavePress={() => navigation.navigate('Home')}
+          onDeletePress={() => navigation.navigate('Home')}
+        />
       </View>
 
-      {/* Modal Dropdown */}
-      <Modal
-        transparent
+      <CategoryModal
         visible={modalVisible}
-        animationType="fade"
-        onRequestClose={() => setModalVisible(false)}>
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setModalVisible(false)}>
-          <View style={styles.modalContent}>
-            {categories.map(item => (
-              <TouchableOpacity
-                key={item}
-                style={styles.modalItem}
-                onPress={() => handleSelect(item)}>
-                <Text style={styles.modalItemText}>{item}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </TouchableOpacity>
-      </Modal>
+        onClose={() => setModalVisible(false)}
+        onSelect={handleSelect}
+      />
     </View>
   );
 };
+
+export default EditNote;
 
 const styles = StyleSheet.create({
   page: {
@@ -123,117 +74,8 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
-    justifyContent: 'space-between',
-  },
-  title: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#000',
-  },
-  date: {
-    fontSize: 11,
-    color: '#7D7D7D',
-    marginTop: 4,
-    marginBottom: 15,
-  },
-  dropdown: {
-    borderWidth: 1,
-    borderColor: '#7D7D7D',
-    borderRadius: 20,
+    paddingTop: 15,
     paddingHorizontal: 15,
-    paddingVertical: 6,
-    alignSelf: 'flex-start',
-    marginBottom: 15,
-    width: 120,
-  },
-  dropdownText: {
-    fontSize: 14,
-    color: '#000',
-  },
-  description: {
-    fontSize: 13,
-    color: '#000',
-    lineHeight: 20,
-    minHeight: 120,
-    textAlignVertical: 'top',
-  },
-  bottomSection: {
-    flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'flex-end',
-    paddingVertical: 10,
-    position: 'relative',
-  },
-  imageUpload: {
-    width: 45,
-    height: 45,
-    backgroundColor: '#1E88E5',
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 150,
-  },
-  uploadIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  plusIcon: {
-    color: 'white',
-    fontSize: 16,
-    position: 'absolute',
-    top: 2,
-    right: 8,
-  },
-  uploadIcon: {
-    width: 25,
-    height: 25,
-    tintColor: 'white',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-  },
-  saveButton: {
-    backgroundColor: '#0B1A51',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-    marginRight: 10,
-  },
-  saveButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  deleteButton: {
-    backgroundColor: '#FF0000',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-  },
-  deleteButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.3)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContent: {
-    backgroundColor: '#fff',
-    borderRadius: 10,
-    padding: 15,
-    width: 200,
-  },
-  modalItem: {
-    paddingVertical: 10,
-  },
-  modalItemText: {
-    fontSize: 14,
-    color: '#000',
   },
 });
-
-export default EditNote;

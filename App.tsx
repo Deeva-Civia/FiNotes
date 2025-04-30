@@ -62,77 +62,78 @@ const App = () => {
     setNotes(updatedNotes);
   };
   return (
-    // <NavigationContainer>
-    //   <Stack.Navigator
-    //     screenOptions={{
-    //       animation: 'fade',
-    //     }}>
-    //     <Stack.Screen
-    //       name="SplashScreen"
-    //       component={SplashScreen}
-    //       options={{headerShown: false}}
-    //     />
-    //     <Stack.Screen
-    //       name="Start"
-    //       component={Start}
-    //       options={{headerShown: false}}
-    //     />
-    //     <Stack.Screen
-    //       name="SignIn"
-    //       component={SignIn}
-    //       options={{
-    //         headerShown: false,
-    //         animation: 'slide_from_bottom',
-    //       }}
-    //     />
-    //     <Stack.Screen
-    //       name="SignUp"
-    //       component={SignUp}
-    //       options={{
-    //         headerShown: false,
-    //         animation: 'slide_from_bottom',
-    //       }}
-    //     />
-    //     <Stack.Screen name="Home" options={{headerShown: false}}>
-    //       {props => (
-    //         <Home
-    //           {...props}
-    //           notes={notes}
-    //           onFavorite={handleFavorite}
-    //           searchQuery={searchQuery}
-    //           setSearchQuery={setSearchQuery}
-    //           handleAddNote={handleAddNote}
-    //         />
-    //       )}
-    //     </Stack.Screen>
-    //     <Stack.Screen
-    //       name="AddNote"
-    //       component={AddNote}
-    //       options={{headerShown: false}}
-    //     />
-    //     <Stack.Screen
-    //       name="EditNote"
-    //       component={EditNote}
-    //       options={{headerShown: false}}
-    //     />
-    //     <Stack.Screen
-    //       name="Search"
-    //       options={{
-    //         headerShown: false,
-    //         animation: 'slide_from_bottom',
-    //       }}>
-    //       {props => (
-    //         <Search
-    //           {...props}
-    //           notes={notes}
-    //           onFavorite={handleFavorite}
-    //           searchQuery={searchQuery}
-    //           setSearchQuery={setSearchQuery}
-    //         />
-    //       )}
-    //     </Stack.Screen>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
-    <AddNote />
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          animation: 'fade',
+        }}>
+        <Stack.Screen
+          name="SplashScreen"
+          component={SplashScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Start"
+          component={Start}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}
+        />
+        <Stack.Screen name="Home" options={{headerShown: false}}>
+          {props => (
+            <Home
+              {...props}
+              notes={notes}
+              onFavorite={handleFavorite}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              handleAddNote={handleAddNote}
+            />
+          )}
+        </Stack.Screen>
+        <Stack.Screen
+          name="AddNote"
+          component={AddNote}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="EditNote"
+          component={EditNote}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="Search"
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}>
+          {props => (
+            <Search
+              {...props}
+              notes={notes}
+              onFavorite={handleFavorite}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
+
+export default App;

@@ -7,7 +7,9 @@ import ButtonCategory from './ButtonCategory';
 import NoteItem from './NotesItem';
 import AddButton from './AddButton';
 import EmptyState from './EmptyState';
-import ButtonNote from '../ButtonNote';
+import NoteTitleInput from './NoteTitleInput';
+import NoteDateText from './NoteDateText';
+import NoteBodyInput from './NoteBodyInput';
 
 export {
   ImageUser,
@@ -19,5 +21,7 @@ export {
   AddButton,
   EmptyState,
   Button,
-  ButtonNote,
+  NoteTitleInput,
+  NoteDateText,
+  NoteBodyInput,
 };

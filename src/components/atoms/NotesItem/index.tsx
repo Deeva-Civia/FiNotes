@@ -2,28 +2,30 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Star, StarFilledBlue} from '../../../assets';
 
-const NoteItem = ({note, onFavorite}) => {
+const NoteItem = ({note, onFavorite, onPress}) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.title}>{note.title}</Text>
-        <TouchableOpacity onPress={() => onFavorite(note.id)}>
-          {note.favorited ? (
-            <StarFilledBlue width={20} height={20} />
-          ) : (
-            <Star width={20} height={20} />
-          )}
-        </TouchableOpacity>
+    <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>{note.title}</Text>
+          <TouchableOpacity onPress={() => onFavorite(note.id)}>
+            {note.favorited ? (
+              <StarFilledBlue width={20} height={20} />
+            ) : (
+              <Star width={20} height={20} />
+            )}
+          </TouchableOpacity>
+        </View>
+        <Text style={styles.body}>{note.body}</Text>
+        <Text style={styles.date}>
+          {new Date(note.createdAt).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </Text>
       </View>
-      <Text style={styles.body}>{note.body}</Text>
-      <Text style={styles.date}>
-        {new Date(note.createdAt).toLocaleDateString('id-ID', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric',
-        })}
-      </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 

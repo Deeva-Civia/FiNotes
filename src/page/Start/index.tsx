@@ -25,13 +25,17 @@ const Start = ({navigation}) => {
           <View style={styles.buttonWrapper}>
             <Button
               label="Sign In"
-              type="primary"
+              bgColor="#10266F"
+              color="#FFFFFF"
+              borderColor="#10266F"
               onPress={() => navigation.navigate('SignIn')}
             />
             <Gap height={29} />
             <Button
               label="Sign Up"
-              type="secondary"
+              bgColor="#FFFFFF"
+              color="#10266F"
+              borderColor="#10266F"
               onPress={() => navigation.navigate('SignUp')}
             />
           </View>

@@ -9,7 +9,6 @@ const SignIn = ({navigation}) => {
       <Header
         title="Sign In"
         titleSize={26}
-        backgroundColor="#FFFFFF"
         displayBackButton
         align="right"
         onPress={() => navigation.goBack()}
@@ -31,13 +30,17 @@ const SignIn = ({navigation}) => {
         <View style={styles.buttonWrapper}>
           <Button
             label="Sign In"
-            type="primary"
+            bgColor="#10266F"
+            color="#FFFFFF"
+            borderColor="#10266F"
             onPress={() => navigation.navigate('Home')}
           />
           <Gap height={15} />
           <Button
             label="Create new account"
-            type="secondary"
+            bgColor="#FFFFFF"
+            color="#10266F"
+            borderColor="#10266F"
             onPress={() => navigation.navigate('SignUp')}
           />
         </View>

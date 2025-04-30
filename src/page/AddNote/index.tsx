@@ -1,105 +1,62 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+import {StyleSheet, View, ScrollView} from 'react-native';
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  TouchableOpacity,
-  Image,
-  ScrollView,
-  Modal,
-} from 'react-native';
+  BottomSection,
+  CategoryDropdown,
+  Header,
+} from '../../components/molecules';
+import {
+  NoteBodyInput,
+  NoteDateText,
+  NoteTitleInput,
+} from '../../components/atoms';
+import {CategoryModal} from '../../components/molecules';
 
-const categories = ['Back-End', 'Front-End', 'DevOps', 'Mobile', 'UI/UX'];
-
-const AddNote = () => {
+const AddNote = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState('Select Category');
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState('');
   const [note, setNote] = useState('');
 
-  const handleSelect = (category) => {
+  const handleSelect = category => {
     setSelectedCategory(category);
     setModalVisible(false);
   };
 
   return (
     <View style={styles.page}>
+      <Header
+        title="Add Note"
+        titleSize={26}
+        displayBackButton
+        align="right"
+        onPress={() => navigation.goBack()}
+      />
       <View style={styles.container}>
-        <ScrollView style={{ flex: 1 }}>
-          <TextInput
-            style={styles.titleInput}
-            placeholder="Title"
-            placeholderTextColor="#A0A0A0"
-            value={title}
-            onChangeText={setTitle}
+        <ScrollView style={{flex: 1}}>
+          <NoteTitleInput value={title} onChangeText={setTitle} />
+          <NoteDateText date="18 April 2025 18:16" />
+          <CategoryDropdown
+            selectedCategory={selectedCategory}
+            handleSelect={handleSelect}
+            modalVisible={modalVisible}
+            setModalVisible={setModalVisible}
           />
-          <Text style={styles.date}>18 April 2025 18:16</Text>
-
-          <TouchableOpacity
-            style={styles.dropdown}
-            onPress={() => setModalVisible(true)}
-          >
-            <Text style={styles.dropdownText}>
-              {selectedCategory}⬇️
-            </Text>
-          </TouchableOpacity>
-
-          <TextInput
-            style={styles.noteInput}
-            placeholder="Start typing"
-            placeholderTextColor="#A0A0A0"
-            multiline
-            value={note}
-            onChangeText={setNote}
-          />
+          <NoteBodyInput value={note} onChangeText={setNote} />
         </ScrollView>
 
-        {/* Bottom Section */}
-        <View style={styles.bottomSection}>
-          <TouchableOpacity style={styles.saveButton}>
-            <Text style={styles.saveButtonText}>Save</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.imageUpload}>
-            <View style={styles.uploadIconContainer}>
-              <Text style={styles.plusIcon}>+</Text>
-              <Image
-                source={require('../../assets/icon.png')}
-                style={styles.uploadIcon}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
+        <BottomSection onSavePress={() => navigation.navigate('Home')} />
       </View>
-
-      {/* Modal Dropdown */}
-      <Modal
-        transparent
+      <CategoryModal
         visible={modalVisible}
-        animationType="fade"
-        onRequestClose={() => setModalVisible(false)}
-      >
-        <TouchableOpacity
-          style={styles.modalOverlay}
-          onPress={() => setModalVisible(false)}
-        >
-          <View style={styles.modalContent}>
-            {categories.map((item) => (
-              <TouchableOpacity
-                key={item}
-                style={styles.modalItem}
-                onPress={() => handleSelect(item)}
-              >
-                <Text style={styles.modalItemText}>{item}</Text>
-              </TouchableOpacity>
-            ))}
-          </View>
-        </TouchableOpacity>
-      </Modal>
+        onClose={() => setModalVisible(false)}
+        onSelect={handleSelect}
+      />
     </View>
   );
 };
+
+export default AddNote;
 
 const styles = StyleSheet.create({
   page: {
@@ -108,39 +65,47 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    padding: 20,
+    paddingTop: 15,
+    paddingHorizontal: 15,
     justifyContent: 'space-between',
   },
   titleInput: {
-    fontSize: 22,
-    fontWeight: 'bold',
+    fontSize: 25,
+    fontFamily: 'Roboto-Medium',
     color: '#000',
   },
   date: {
-    fontSize: 11,
-    color: '#7D7D7D',
-    marginTop: 4,
-    marginBottom: 15,
+    fontSize: 10,
+    fontFamily: 'Roboto-Medium',
+    color: '#656565',
+    marginTop: 6,
+    marginBottom: 16,
   },
   dropdown: {
     borderWidth: 1,
-    borderColor: '#7D7D7D',
-    borderRadius: 20,
-    paddingHorizontal: 15,
-    paddingVertical: 6,
+    borderColor: '#1E80C9',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
     alignSelf: 'flex-start',
-    marginBottom: 15,
-    width: 150,
+    marginBottom: 28,
+  },
+  dropdownContent: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 14,
   },
   dropdownText: {
-    fontSize: 14,
-    color: '#000',
+    fontFamily: 'Roboto-Regular',
+    fontSize: 15,
+    color: '#656565',
   },
   noteInput: {
-    fontSize: 14,
+    fontSize: 15,
+    fontFamily: 'Roboto-Medium',
     color: '#000',
-    minHeight: 150,
-    textAlignVertical: 'top',
   },
   bottomSection: {
     flexDirection: 'row',
@@ -148,42 +113,13 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingVertical: 10,
     position: 'relative',
+    marginBottom: 15,
+    marginHorizontal: 10,
   },
   imageUpload: {
     width: 45,
     height: 45,
-    backgroundColor: '#1E88E5',
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 150,
-  },
-  uploadIconContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  plusIcon: {
-    color: 'white',
-    fontSize: 16,
-    position: 'absolute',
-    top: 2,
-    right: 8,
-  },
-  uploadIcon: {
-    width: 25,
-    height: 25,
-    tintColor: 'white',
-  },
-  saveButton: {
-    backgroundColor: '#0B1A51',
-    borderRadius: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 30,
-  },
-  saveButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
+    marginBottom: 30,
   },
   modalOverlay: {
     flex: 1,
@@ -201,9 +137,13 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   modalItemText: {
-    fontSize: 14,
+    fontSize: 15,
+    fontFamily: 'Roboto-Medium',
     color: '#000',
+    textAlign: 'center',
+  },
+  modalItemBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
 });
-
-export default AddNote;
