@@ -1,17 +1,21 @@
-import {StyleSheet, View, ScrollView} from 'react-native';
-import React from 'react';
-import {Gap, Quotes, SearchButton, AddButton} from '../../components/atoms';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import React, {useState} from 'react';
+import {Gap, Quotes, AddButton} from '../../components/atoms';
 import {Header, Category, NotesList} from '../../components/molecules';
+import {SearchIcon} from '../../assets';
 
-const Home = ({
-  notes,
-  onFavorite,
-  handleAddNote,
-  searchQuery,
-  setSearchQuery,
-}) => {
+const Home = ({notes, onFavorite, handleAddNote, navigation}) => {
+  const [activeCategory, setActiveCategory] = useState('All');
   const allNotes = [...notes].sort((a, b) => b.createdAt - a.createdAt);
-
+  const filteredNotes = allNotes.filter(note => {
+    if (activeCategory === 'All') {
+      return true;
+    }
+    if (activeCategory === 'Favorite') {
+      return note.favorited;
+    }
+    return note.category === activeCategory;
+  });
   return (
     <View style={styles.pageContainer}>
       <Header title="Welcome Deeva!" titleSize={30} rightImage align="left" />
@@ -19,18 +23,27 @@ const Home = ({
       <View style={styles.contentContainer}>
         <Quotes />
         <Gap height={22} />
-        <SearchButton
-          width={'100%'}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Search')}
+          style={styles.searchFakeInput}
+          activeOpacity={0.9}>
+          <SearchIcon style={styles.icon} />
+          <Text style={styles.placeholder}>Search</Text>
+        </TouchableOpacity>
+        <Gap height={22} />
+        <Category
+          activeCategory={activeCategory}
+          setActiveCategory={category => {
+            setActiveCategory(category);
+          }}
         />
-        <Gap height={22} />
-        <Category />
-        <Gap height={22} />
+        <Gap height={19} />
         <NotesList
-          notes={allNotes}
+          notes={filteredNotes}
           onFavorite={onFavorite}
-          text={'Belum ada catatan'}
+          text={
+            '\t\t\t\t\tNo notes available\nStart by creating your first one!'
+          }
         />
         <AddButton onPress={handleAddNote} />
       </View>
@@ -47,6 +60,28 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    paddingHorizontal: 22,
+    paddingHorizontal: 10,
+  },
+  searchFakeInput: {
+    backgroundColor: '#F6F6F6',
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 40,
+    gap: 10,
+    paddingHorizontal: 10,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#AEAEAE',
+  },
+  placeholder: {
+    flex: 1,
+    fontSize: 15,
+    color: '#AEAEAE',
+    fontFamily: 'Roboto-Medium',
+    paddingVertical: 0,
+  },
+  icon: {
+    width: 20,
+    height: 20,
   },
 });

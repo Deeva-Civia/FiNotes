@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import Home from './src/page/Home';
-import Favorite from './src/page/Favorite';
 import Search from './src/page/Search';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   const [notes, setNotes] = useState([
@@ -11,6 +14,7 @@ const App = () => {
       body: 'Menggunakan file htaccess : sudah tidak pakai index.html',
       createdAt: new Date('2025-04-15').getTime(),
       favorited: false,
+      category: 'Back-end',
     },
     {
       id: '2',
@@ -18,6 +22,7 @@ const App = () => {
       body: 'Untuk menangani error dalam javascript menggunakan try',
       createdAt: new Date('2025-04-14').getTime(),
       favorited: true,
+      category: 'Front-end',
     },
     {
       id: '3',
@@ -25,6 +30,7 @@ const App = () => {
       body: 'IP : 192.168.1.0',
       createdAt: new Date('2025-04-12').getTime(),
       favorited: false,
+      category: 'Back-end',
     },
     {
       id: '4',
@@ -32,6 +38,7 @@ const App = () => {
       body: 'Port 22 : SSH',
       createdAt: new Date('2025-04-09').getTime(),
       favorited: true,
+      category: 'Back-end',
     },
   ]);
 
@@ -49,26 +56,41 @@ const App = () => {
     setNotes(updatedNotes);
   };
   return (
-    // <Home
-    //   notes={notes}
-    //   onFavorite={handleFavorite}
-    //   searchQuery={searchQuery}
-    //   setSearchQuery={setSearchQuery}
-    //   handleAddNote={handleAddNote}
-    // />
-    // <Favorite
-    //   notes={notes}
-    //   onFavorite={handleFavorite}
-    //   searchQuery={searchQuery}
-    //   setSearchQuery={setSearchQuery}
-    //   handleAddNote={handleAddNote}
-    // />
-    <Search
-      searchQuery={searchQuery}
-      setSearchQuery={setSearchQuery}
-      notes={notes}
-      onFavorite={handleFavorite}
-    />
+    <NavigationContainer>
+      <Stack.Navigator
+        screenOptions={{
+          animation: 'fade',
+        }}>
+        <Stack.Screen name="Home" options={{headerShown: false}}>
+          {props => (
+            <Home
+              {...props}
+              notes={notes}
+              onFavorite={handleFavorite}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+              handleAddNote={handleAddNote}
+            />
+          )}
+        </Stack.Screen>
+        <Stack.Screen
+          name="Search"
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}>
+          {props => (
+            <Search
+              {...props}
+              notes={notes}
+              onFavorite={handleFavorite}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          )}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 

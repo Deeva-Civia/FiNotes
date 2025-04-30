@@ -29,7 +29,7 @@ const NoteItem = ({note, onFavorite}) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderRadius: 10,
     padding: 14,
     marginBottom: 10,
