@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
     backgroundColor: '#EDF3FF',
-    paddingHorizontal: 22,
+    paddingHorizontal: 15,
   },
   contentContainer: {
     flex: 1,
@@ -65,13 +65,14 @@ const styles = StyleSheet.create({
   searchRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
     marginTop: 15,
   },
   cancelText: {
     fontFamily: 'Roboto-Medium',
     fontSize: 17,
     color: '#10266F',
+    textAlign: 'center',
   },
   emptyText: {
     fontSize: 16,

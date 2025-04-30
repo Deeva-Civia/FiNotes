@@ -2,7 +2,7 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Button, Gap} from '../../components/atoms/';
 
-const Start = () => {
+const Start = ({navigation}) => {
   return (
     <View style={styles.pageContainer}>
       <View style={styles.contentContainer}>
@@ -23,9 +23,17 @@ const Start = () => {
         <Gap height={50} />
         <View style={styles.footerCard}>
           <View style={styles.buttonWrapper}>
-            <Button label="Sign In" type="primary" />
+            <Button
+              label="Sign In"
+              type="primary"
+              onPress={() => navigation.navigate('SignIn')}
+            />
             <Gap height={29} />
-            <Button label="Sign Up" type="secondary" />
+            <Button
+              label="Sign Up"
+              type="secondary"
+              onPress={() => navigation.navigate('SignUp')}
+            />
           </View>
         </View>
       </View>

@@ -19,7 +19,6 @@ const Home = ({notes, onFavorite, handleAddNote, navigation}) => {
   return (
     <View style={styles.pageContainer}>
       <Header title="Welcome Deeva!" titleSize={30} rightImage align="left" />
-      <Gap height={27} />
       <View style={styles.contentContainer}>
         <Quotes />
         <Gap height={22} />
@@ -60,7 +59,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flex: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    marginTop: 27,
   },
   searchFakeInput: {
     backgroundColor: '#F6F6F6',

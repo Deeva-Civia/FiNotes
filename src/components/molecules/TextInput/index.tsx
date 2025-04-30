@@ -1,15 +1,18 @@
 import {StyleSheet, Text, View, TextInput as Input} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 
 const TextInput = ({label, placeholder, secureTextEntry = false}) => {
+  const [isFocused, setIsFocused] = useState(false);
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.label}>{label}</Text>
       <Input
         placeholder={placeholder}
         placeholderTextColor="#8D92A3"
         secureTextEntry={secureTextEntry}
-        style={styles.input}
+        style={[styles.input, {borderColor: isFocused ? '#10266F' : '#FFFFFF'}]}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </View>
   );
@@ -18,25 +21,21 @@ const TextInput = ({label, placeholder, secureTextEntry = false}) => {
 export default TextInput;
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-  },
   label: {
-    fontFamily: 'Poppins-Medium',
-    fontSize: 14,
-    color: '#0B1A51', // lebih gelap navy
-    marginBottom: 6,
+    fontFamily: 'Roboto-Medium',
+    fontSize: 18,
+    color: '#10266F',
+    marginBottom: 8,
   },
   input: {
-    height: 48, // fix height supaya konsisten
+    height: 48,
     backgroundColor: '#FFFFFF',
     borderWidth: 1,
-    borderColor: '#E0E0E0', // soft border color
-    borderRadius: 12, // lebih bulat
+    borderRadius: 10,
     paddingHorizontal: 16,
     fontFamily: 'Poppins-Regular',
-    fontSize: 13, // sedikit lebih kecil
+    fontSize: 16,
     color: '#020202',
-    elevation: 1,
+    elevation: 2,
   },
 });

@@ -4,31 +4,38 @@ import {Header, TextInput} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms/';
 import {Profile} from '../../assets';
 
-const SignIn = () => {
+const SignIn = ({navigation}) => {
   return (
     <View style={styles.pageContainer}>
       <Header
         title="Sign Up"
         titleSize={26}
-        backgroundColor="#FFFFFF"
         displayBackButton
         align="right"
+        onPress={() => navigation.goBack()}
       />
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.contentContainer}>
-          <Gap height={26} />
-          <Text style={styles.title}>Create New Account</Text>
+          <Text style={styles.title}>{'Create New\nAccount'}</Text>
           <View style={styles.imageWrapper}>
             <View style={styles.profileCircle}>
               <Profile width={80} height={80} />
             </View>
           </View>
           <TextInput label="Name" placeholder="Name" />
+          <Gap height={14} />
           <TextInput label="Username" placeholder="Username" />
+          <Gap height={14} />
           <TextInput label="Email" placeholder="Email address" />
+          <Gap height={14} />
           <TextInput label="Password" placeholder="Password" secureTextEntry />
+          <Gap height={25} />
           <View style={styles.buttonWrapper}>
-            <Button label="Sign Up" type="primary" />
+            <Button
+              label="Sign Up"
+              type="primary"
+              onPress={() => navigation.navigate('SignIn')}
+            />
           </View>
           <Gap height={30} />
         </View>
@@ -46,11 +53,11 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
+    marginTop: 55,
   },
   contentContainer: {
     backgroundColor: '#EDF3FF',
     paddingHorizontal: 24,
-    paddingTop: 55,
   },
   title: {
     fontSize: 34,
@@ -64,7 +71,7 @@ const styles = StyleSheet.create({
   },
   imageWrapper: {
     alignItems: 'center',
-    marginBottom: 28,
+    marginBottom: 15,
   },
   profileCircle: {
     width: 125,

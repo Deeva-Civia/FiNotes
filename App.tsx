@@ -75,6 +75,22 @@ const App = () => {
           component={Start}
           options={{headerShown: false}}
         />
+        <Stack.Screen
+          name="SignIn"
+          component={SignIn}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            headerShown: false,
+            animation: 'slide_from_bottom',
+          }}
+        />
         <Stack.Screen name="Home" options={{headerShown: false}}>
           {props => (
             <Home
