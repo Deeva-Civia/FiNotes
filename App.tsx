@@ -1,3 +1,8 @@
+import React from 'react';
+import SplashScreen from './src/page/SplashScreen';
+import SignIn from './src/page/SignIn';
+import SignUp from './src/page/SignUp';
+import Start from './src/page/Start';
 import React, {useState} from 'react';
 import Home from './src/page/Home';
 import Search from './src/page/Search';
