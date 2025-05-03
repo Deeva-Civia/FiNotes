@@ -23,4 +23,7 @@ export {
   StarFilledWhite,
   StarFilledBlue,
   Add,
+  First,
+  Profile,
+  FiNotes,
 };

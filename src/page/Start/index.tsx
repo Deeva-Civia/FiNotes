@@ -15,12 +15,9 @@ const Start = () => {
           Terstruktur. Khusus mahasiswa Fakultas Ilmu Komputer
         </Text>
         <Gap height={50} />
-        <View style={styles.footerCard}>
-          <View style={styles.buttonWrapper}>
-            <Button label="Sign In" type="primary" />
-            <Gap height={16} />
-            <Button label="Sign Up" type="secondary" />
-          </View>
+        <View style={styles.buttonWrapper}>
+          <Button label="Sign In" type="primary" />
+          <Button label="Sign Up" type="secondary" />
         </View>
       </View>
     </View>
@@ -53,26 +50,8 @@ const styles = StyleSheet.create({
     color: '#656565',
     paddingHorizontal: 10, // Add padding for readability
     marginBottom: 32,
+    lineHeight: 22,
   },
-  footerCard: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#EDF3FF',
-    borderTopLeftRadius: 50,
-    borderTopRightRadius: 50,
-    paddingTop: 50,
-    paddingBottom: 40,
-    paddingHorizontal: 0, // Tidak ada padding kiri-kanan
-    shadowColor: '#000',
-    shadowOffset: {width: 0, height: -2},
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 10,
-    alignItems: 'center', // Tengahin isi (opsional)
-  },
-
   buttonWrapper: {
     marginTop: 5,
   },
