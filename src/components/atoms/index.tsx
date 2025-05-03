@@ -1,12 +1,15 @@
 import ImageUser from './ImageUser';
-import Button from './Button';
 import Gap from './Gap';
+import Button from './Button';
 import Quotes from './Quotes';
 import SearchButton from './SearchButton';
 import ButtonCategory from './ButtonCategory';
 import NoteItem from './NotesItem';
 import AddButton from './AddButton';
 import EmptyState from './EmptyState';
+import NoteTitleInput from './NoteTitleInput';
+import NoteDateText from './NoteDateText';
+import NoteBodyInput from './NoteBodyInput';
 
 export {
   ImageUser,
@@ -18,4 +21,7 @@ export {
   AddButton,
   EmptyState,
   Button,
+  NoteTitleInput,
+  NoteDateText,
+  NoteBodyInput,
 };

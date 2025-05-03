@@ -1,15 +1,16 @@
 import {StyleSheet, TextInput, View} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {SearchIcon} from '../../../assets';
 
-const SearchButton = ({
-  borderColor = '#AEAEAE',
-  searchQuery,
-  setSearchQuery,
-  width,
-}) => {
+const SearchButton = ({searchQuery, setSearchQuery}) => {
+  const [isFocused, setIsFocused] = useState(false);
+
   return (
-    <View style={styles.container(borderColor, width)}>
+    <View
+      style={[
+        styles.container,
+        {borderColor: isFocused ? '#10266F' : '#AEAEAE'},
+      ]}>
       <SearchIcon style={styles.icon} />
       <TextInput
         value={searchQuery}
@@ -17,6 +18,8 @@ const SearchButton = ({
         placeholder="Search"
         placeholderTextColor="#AEAEAE"
         style={styles.input}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
       />
     </View>
   );
@@ -25,18 +28,17 @@ const SearchButton = ({
 export default SearchButton;
 
 const styles = StyleSheet.create({
-  container: (borderColor, width) => ({
+  container: {
     backgroundColor: '#F6F6F6',
     flexDirection: 'row',
     alignItems: 'center',
-    width: width,
+    width: 325,
     height: 40,
-    gap: 10,
     paddingHorizontal: 10,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: borderColor,
-  }),
+    borderColor: '#AEAEAE',
+  },
   input: {
     flex: 1,
     fontSize: 15,

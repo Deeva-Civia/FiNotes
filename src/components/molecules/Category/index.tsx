@@ -1,27 +1,32 @@
 import {StyleSheet, View, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {ButtonCategory} from '../../atoms';
 
-const Category = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
+export const categories = [
+  'All',
+  'Favorite',
+  'Back-end',
+  'Front-end',
+  'Software Engineering',
+];
 
-  const categories = [
-    'All',
-    'Favorite',
-    'Back-end',
-    'Front-end',
-    'Software Engineering',
-  ];
+const Category = ({activeCategory, setActiveCategory}) => {
+  const handlePress = label => {
+    setActiveCategory(label);
+  };
 
   return (
     <View style={styles.container}>
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        style={styles.scroll}>
         {categories.map(item => (
           <ButtonCategory
             key={item}
             label={item}
             isActive={item === activeCategory}
-            onPress={() => setActiveCategory(item)}
+            onPress={() => handlePress(item)}
           />
         ))}
       </ScrollView>
@@ -34,5 +39,8 @@ export default Category;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+  },
+  scroll: {
+    borderRadius: 10,
   },
 });

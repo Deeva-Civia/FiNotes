@@ -16,8 +16,8 @@ const AddButton = ({onPress}) => {
 const styles = StyleSheet.create({
   button: {
     position: 'absolute',
-    bottom: 20,
-    right: 70,
+    bottom: 30,
+    right: 60,
     backgroundColor: '#10266F',
     width: 60,
     height: 60,

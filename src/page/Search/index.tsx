@@ -3,7 +3,13 @@ import React from 'react';
 import {Gap, SearchButton} from '../../components/atoms';
 import {NotesList} from '../../components/molecules';
 
-const Search = ({searchQuery, setSearchQuery, notes, onFavorite}) => {
+const Search = ({
+  searchQuery,
+  setSearchQuery,
+  notes,
+  onFavorite,
+  navigation,
+}) => {
   const filteredNotes =
     searchQuery.trim().length === 0
       ? []
@@ -17,19 +23,20 @@ const Search = ({searchQuery, setSearchQuery, notes, onFavorite}) => {
     <View style={styles.pageContainer}>
       <View style={styles.searchRow}>
         <SearchButton
-          borderColor="#10266F"
           searchQuery={searchQuery}
           setSearchQuery={setSearchQuery}
-          width={310}
         />
-        <TouchableOpacity activeOpacity={0.7} style={styles.button}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.button}
+          onPress={() => navigation.navigate('Home')}>
           <Text style={styles.cancelText}>Cancel</Text>
         </TouchableOpacity>
       </View>
       <Gap height={22} />
       <View style={styles.contentContainer}>
         {searchQuery.trim().length === 0 ? null : filteredNotes.length === 0 ? (
-          <Text style={styles.emptyText}>Tidak ada catatan ditemukan</Text>
+          <Text style={styles.emptyText}>No matching results</Text>
         ) : (
           <NotesList notes={filteredNotes} onFavorite={onFavorite} text={''} />
         )}
@@ -44,7 +51,7 @@ const styles = StyleSheet.create({
   pageContainer: {
     flex: 1,
     backgroundColor: '#EDF3FF',
-    paddingHorizontal: 22,
+    paddingHorizontal: 15,
   },
   contentContainer: {
     flex: 1,
@@ -58,13 +65,14 @@ const styles = StyleSheet.create({
   searchRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
     marginTop: 15,
   },
   cancelText: {
     fontFamily: 'Roboto-Medium',
     fontSize: 17,
     color: '#10266F',
+    textAlign: 'center',
   },
   emptyText: {
     fontSize: 16,
