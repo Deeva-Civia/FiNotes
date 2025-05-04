@@ -23,13 +23,7 @@ export {
   StarFilledWhite,
   StarFilledBlue,
   Add,
-<<<<<<< HEAD
-  First,
-  Profile,
-  FiNotes,
-=======
   Profile,
   AddPhoto,
   ButtonDrop,
->>>>>>> 3b7917809c84ce75c8298c8044cb01f3052a6726
 };

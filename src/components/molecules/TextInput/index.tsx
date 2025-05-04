@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput as Input} from 'react-native';
 import React, {useState} from 'react';
 
-const TextInput = ({label, placeholder, secureTextEntry = false}) => {
+const TextInput = ({label, placeholder, secureTextEntry = false, ...rest}) => {
   const [isFocused, setIsFocused] = useState(false);
   return (
     <View>
@@ -13,6 +13,7 @@ const TextInput = ({label, placeholder, secureTextEntry = false}) => {
         style={[styles.input, {borderColor: isFocused ? '#10266F' : '#FFFFFF'}]}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
+        {...rest}
       />
     </View>
   );
