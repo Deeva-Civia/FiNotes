@@ -1,3 +1,5 @@
+import 'react-native-get-random-values';
+import './src/config/Firebase';
 import React, {useState} from 'react';
 import SplashScreen from './src/page/SplashScreen';
 import SignIn from './src/page/SignIn';
