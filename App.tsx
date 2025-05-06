@@ -27,6 +27,7 @@ const App = () => {
       title: 'Error Handling',
       body: 'Untuk menangani error dalam javascript menggunakan try',
       createdAt: new Date('2025-04-14').getTime(),
+      updatedAt: new Date('2025-04-15').getTime(),
       favorited: true,
       category: 'Front-end',
     },
@@ -35,6 +36,7 @@ const App = () => {
       title: 'IP & Domain',
       body: 'IP : 192.168.1.0',
       createdAt: new Date('2025-04-12').getTime(),
+      updatedAt: new Date('2025-04-15').getTime(),
       favorited: false,
       category: 'Back-end',
     },
@@ -43,6 +45,7 @@ const App = () => {
       title: 'Port',
       body: 'Port 22 : SSH',
       createdAt: new Date('2025-04-09').getTime(),
+      updatedAt: new Date('2025-04-15').getTime(),
       favorited: true,
       category: 'Back-end',
     },
@@ -105,16 +108,12 @@ const App = () => {
             />
           )}
         </Stack.Screen>
-        <Stack.Screen
-          name="AddNote"
-          component={AddNote}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
-          name="EditNote"
-          component={EditNote}
-          options={{headerShown: false}}
-        />
+        <Stack.Screen name="AddNote" options={{headerShown: false}}>
+          {props => <AddNote {...props} notes={notes} setNotes={setNotes} />}
+        </Stack.Screen>
+        <Stack.Screen name="EditNote" options={{headerShown: false}}>
+          {props => <EditNote {...props} notes={notes} setNotes={setNotes} />}
+        </Stack.Screen>
         <Stack.Screen
           name="Search"
           options={{

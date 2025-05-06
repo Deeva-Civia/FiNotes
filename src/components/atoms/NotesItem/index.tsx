@@ -2,6 +2,15 @@ import React from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Star, StarFilledBlue} from '../../../assets';
 
+const truncateText = (text, maxLength) => {
+  if (!text) {
+    return '';
+  }
+  if (text.length <= maxLength) {
+    return text;
+  }
+  return text.substring(0, maxLength) + '...';
+};
 const NoteItem = ({note, onFavorite, onPress}) => {
   return (
     <TouchableOpacity onPress={onPress} activeOpacity={0.8}>
@@ -16,13 +25,16 @@ const NoteItem = ({note, onFavorite, onPress}) => {
             )}
           </TouchableOpacity>
         </View>
-        <Text style={styles.body}>{note.body}</Text>
+        <Text style={styles.body}>{truncateText(note.body, 50)}</Text>
         <Text style={styles.date}>
-          {new Date(note.createdAt).toLocaleDateString('id-ID', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-          })}
+          {new Date(note.updatedAt || note.createdAt).toLocaleDateString(
+            'id-ID',
+            {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            },
+          )}
         </Text>
       </View>
     </TouchableOpacity>

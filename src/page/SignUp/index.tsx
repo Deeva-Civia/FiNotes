@@ -1,10 +1,17 @@
-import {StyleSheet, Text, View, ScrollView} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {Header, TextInput} from '../../components/molecules';
 import {Button, Gap} from '../../components/atoms/';
 import {Profile} from '../../assets';
 
-const SignIn = ({navigation}) => {
+const SignUp = ({navigation}) => {
   return (
     <View style={styles.pageContainer}>
       <Header
@@ -17,11 +24,11 @@ const SignIn = ({navigation}) => {
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.contentContainer}>
           <Text style={styles.title}>{'Create New\nAccount'}</Text>
-          <View style={styles.imageWrapper}>
+          <TouchableOpacity activeOpacity={0.5} style={styles.imageWrapper}>
             <View style={styles.profileCircle}>
               <Profile width={80} height={80} />
             </View>
-          </View>
+          </TouchableOpacity>
           <TextInput label="Name" placeholder="Name" />
           <Gap height={14} />
           <TextInput label="Username" placeholder="Username" />
@@ -46,7 +53,7 @@ const SignIn = ({navigation}) => {
   );
 };
 
-export default SignIn;
+export default SignUp;
 
 const styles = StyleSheet.create({
   pageContainer: {

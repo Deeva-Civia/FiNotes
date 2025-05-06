@@ -38,7 +38,12 @@ const Search = ({
         {searchQuery.trim().length === 0 ? null : filteredNotes.length === 0 ? (
           <Text style={styles.emptyText}>No matching results</Text>
         ) : (
-          <NotesList notes={filteredNotes} onFavorite={onFavorite} text={''} />
+          <NotesList
+            notes={filteredNotes}
+            onFavorite={onFavorite}
+            text={''}
+            onPressItem={note => navigation.navigate('EditNote', {note})}
+          />
         )}
       </View>
     </View>

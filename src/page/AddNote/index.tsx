@@ -12,7 +12,22 @@ import {
 } from '../../components/atoms';
 import {CategoryModal} from '../../components/molecules';
 
-const AddNote = ({navigation}) => {
+const formatDateTime = timestamp => {
+  const date = new Date(timestamp);
+  const formattedDate = date.toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const formattedTime = date.toLocaleTimeString('id-ID', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  return `${formattedDate} | ${formattedTime}`;
+};
+
+const AddNote = ({navigation, notes, setNotes}) => {
   const [selectedCategory, setSelectedCategory] = useState('Select Category');
   const [modalVisible, setModalVisible] = useState(false);
   const [title, setTitle] = useState('');
@@ -21,6 +36,21 @@ const AddNote = ({navigation}) => {
   const handleSelect = category => {
     setSelectedCategory(category);
     setModalVisible(false);
+  };
+
+  const handleSave = () => {
+    const timestamp = Date.now();
+    const newNote = {
+      id: timestamp.toString(36),
+      title,
+      body: note,
+      category: selectedCategory,
+      createdAt: timestamp,
+      updatedAt: timestamp,
+      favorited: false,
+    };
+    setNotes([...notes, newNote]);
+    navigation.navigate('Home');
   };
 
   return (
@@ -35,7 +65,7 @@ const AddNote = ({navigation}) => {
       <View style={styles.container}>
         <ScrollView style={{flex: 1}}>
           <NoteTitleInput value={title} onChangeText={setTitle} />
-          <NoteDateText date="18 April 2025 18:16" />
+          <NoteDateText date={formatDateTime(Date.now())} />
           <CategoryDropdown
             selectedCategory={selectedCategory}
             handleSelect={handleSelect}
@@ -45,7 +75,7 @@ const AddNote = ({navigation}) => {
           <NoteBodyInput value={note} onChangeText={setNote} />
         </ScrollView>
 
-        <BottomSection onSavePress={() => navigation.navigate('Home')} />
+        <BottomSection onSavePress={handleSave} />
       </View>
       <CategoryModal
         visible={modalVisible}

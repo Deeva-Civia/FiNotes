@@ -13,8 +13,22 @@ import {
   NoteTitleInput,
 } from '../../components/atoms';
 
-const EditNote = ({navigation}) => {
-  const route = useRoute();
+const formatDateTime = timestamp => {
+  const date = new Date(timestamp);
+  const formattedDate = date.toLocaleDateString('id-ID', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+  const formattedTime = date.toLocaleTimeString('id-ID', {
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  });
+  return `${formattedDate} | ${formattedTime}`;
+};
+
+const EditNote = ({navigation, route, notes, setNotes}) => {
   const {note} = route.params;
 
   const [selectedCategory, setSelectedCategory] = useState(note.category);
@@ -25,6 +39,28 @@ const EditNote = ({navigation}) => {
   const handleSelect = category => {
     setSelectedCategory(category);
     setModalVisible(false);
+  };
+
+  const handleSave = () => {
+    const updatedNotes = notes.map(n =>
+      n.id === note.id
+        ? {
+            ...n,
+            title,
+            body: description,
+            category: selectedCategory,
+            updatedAt: Date.now(),
+          }
+        : n,
+    );
+    setNotes(updatedNotes);
+    navigation.navigate('Home');
+  };
+
+  const handleDelete = () => {
+    const filteredNotes = notes.filter(n => n.id !== note.id);
+    setNotes(filteredNotes);
+    navigation.navigate('Home');
   };
 
   return (
@@ -40,7 +76,10 @@ const EditNote = ({navigation}) => {
       <View style={styles.container}>
         <ScrollView style={{flex: 1}}>
           <NoteTitleInput value={title} onChangeText={setTitle} />
-          <NoteDateText date="18 April 2025 18:16" />
+          <NoteDateText
+            date={formatDateTime(note.updatedAt || note.createdAt)}
+          />
+
           <CategoryDropdown
             selectedCategory={selectedCategory}
             handleSelect={handleSelect}
@@ -50,10 +89,7 @@ const EditNote = ({navigation}) => {
           <NoteBodyInput value={description} onChangeText={setDescription} />
         </ScrollView>
 
-        <BottomSection
-          onSavePress={() => navigation.navigate('Home')}
-          onDeletePress={() => navigation.navigate('Home')}
-        />
+        <BottomSection onSavePress={handleSave} onDeletePress={handleDelete} />
       </View>
 
       <CategoryModal
